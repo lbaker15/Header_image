@@ -8,6 +8,11 @@ body {
     margin-top: 675px;
     position: absolute;
   }
+
+  nav img {
+    margin: 0 auto;
+
+  }
   
   /*NAV*/
   #navbar {
@@ -22,6 +27,8 @@ body {
   
   .one {
     position: absolute;
+    margin-left: 200px;
+    margin-top: -150px;
     display: none;
     z-index: -1;
     width: 550px;

@@ -35,79 +35,30 @@ let imgThree = document.querySelector(".three")
 let imgFour = document.querySelector(".four")
 let imgFive = document.querySelector(".five")
 
-
-listOne.addEventListener("mouseover", function() { 
-  imgOne.style.display = "block"
-})
-
-listOne.addEventListener("mouseout", function() { 
-  imgOne.style.display = "none"
-})
-
-listTwo.addEventListener("mouseover", function() { 
-  imgTwo.style.display = "block"
-})
-
-listTwo.addEventListener("mouseout", function() { 
-  imgTwo.style.display = "none"
-})
-
-listThree.addEventListener("mouseover", function() { 
-  imgThree.style.display = "block"
-})
-
-listThree.addEventListener("mouseout", function() { 
-  imgThree.style.display = "none"
-})
-
-listFour.addEventListener("mouseover", function() { 
-  imgFour.style.display = "block"
-})
-
-listFour.addEventListener("mouseout", function() { 
-  imgFour.style.display = "none"
-})
-
-listFive.addEventListener("mouseover", function() { 
-  imgFive.style.display = "block"
-})
-
-listFive.addEventListener("mouseout", function() { 
-  imgFive.style.display = "none"
-})
-
-
-listOne.addEventListener("mousemove", function(e) {
-  width = $(window).width()
-  console.log("W", e.clientX - width/2)
-  let x = e.pageX
-  let y = e.pageY
-  imgOne.style.left = x * 0.4 + 300 + "px"
-  imgOne.style.top = y * 0.3 + "px"
-  console.log(e.pageX)
-})
-
-listTwo.addEventListener("mousemove", function(e) {
-  let x = e.pageX
-  let y = e.pageY
-  imgTwo.style.left = x * 0.4 + 200 + "px"
-  imgTwo.style.top = y * 0.3 + "px"
-})
-listThree.addEventListener("mousemove", function(e) {
-  let x = e.pageX
-  let y = e.pageY
-  imgThree.style.left = x * 0.4 + 300 + "px"
-  imgThree.style.top = y * 0.3 + "px"
-})
-listFour.addEventListener("mousemove", function(e) {
-  let x = e.pageX
-  let y = e.pageY
-  imgFour.style.left = x * 0.4 + 200 + "px"
-  imgFour.style.top = y * 0.3 + "px"
-})
-listFive.addEventListener("mousemove", function(e) {
-  let x = e.pageX
-  let y = e.pageY
-  imgFive.style.left = x * 0.4 + 300 + "px"
-  imgFive.style.top = y * 0.3 + "px"
-})
+const movement = (listItem, imgItem) => {
+  listItem.addEventListener("mouseover", function() { 
+    imgItem.style.display = "block"
+  })
+  listItem.addEventListener("mouseout", function() { 
+    imgItem.style.display = "none"
+  })
+  listItem.addEventListener("mousemove", function(e) {
+    const x = e.clientX
+    const y = e.clientY
+    const target = document.querySelector(".navMenu")
+    const targetCoords = target.getBoundingClientRect()
+    //targetCoors.left & offsetWidth static numbers larger as window increases
+    //offsetWidth hardly changes with window increase - both produce static number that accounts for window
+    const top = targetCoords.top 
+    const left = targetCoords.left + target.offsetWidth
+    //Always subtract the midpoint to create range, add minus here to not break code
+    const angleX = -((left - x) - 260)
+    const angleY = -(top - y / 2) - 41
+    imgItem.style.transform = `translate(${angleX}px, ${angleY}px)`
+  })
+}
+movement(listOne, imgOne)
+movement(listTwo, imgTwo)
+movement(listThree, imgThree)
+movement(listFour, imgFour)
+movement(listFive, imgFive)
