@@ -79,7 +79,7 @@ listFive.addEventListener("mouseout", function() {
 
 listOne.addEventListener("mousemove", function(e) {
   width = $(window).width()
-  console.log(e.clientX - width/2)
+  console.log("W", e.clientX - width/2)
   let x = e.pageX
   let y = e.pageY
   imgOne.style.left = x * 0.4 + 300 + "px"
